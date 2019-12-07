@@ -26,6 +26,9 @@ const hasDoubleDigits = (str: string): boolean =>
         return value === array[index + 1];
     });
 
+const hasDoubleDigitsOnly = (str: string): boolean =>
+    str.match(/(?:^|(.)(?!\1))(\d)\2(?!\2)/) ? true : false;
+
 const generatePasswords = (min: number, max: number): string[] => {
     let output = [];
     let i = min;
@@ -40,4 +43,6 @@ const passwords = generatePasswords(range.min, range.max);
 
 const result = passwords
     .filter(value => isIncreasing(value))
-    .filter(value => hasDoubleDigits(value)).length;
+    .filter(value => hasDoubleDigitsOnly(value)).length;
+
+console.log(result);
